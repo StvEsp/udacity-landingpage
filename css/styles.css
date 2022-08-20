@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 /*
  *
  * CSS written based on SMACSS architecture.
@@ -92,6 +94,17 @@ section {
   letter-spacing: 0.15em;
 }
 
+.navbar__menu .home-btn {
+  display: block;
+}
+
+.full-label {
+  display: block;
+}
+
+.short-label {
+  display: none;
+}
 .navbar__menu .menu__link {
   display: block;
   padding: 1em;
@@ -261,4 +274,69 @@ section.your-active-class .landing__container::after {
   to {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
+}
+
+/* Samsung Galaxy 520 Ultra */
+@media (max-width: 412px) {
+  .navbar__menu ul {
+    gap: 1rem;
+  }
+  .full-label {
+    display: none;
+  }
+
+  .short-label {
+    display: block;
+  }
+  .navbar__menu .menu__link:hover {
+    background: none ";";
+  }
+  section {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 901px) {
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .navbar__menu ul {
+    gap: 1rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .navbar__menu .menu__link a:hover,
+  .navbar__menu .menu__link a:visited {
+    background: none;
+  }
+}
+
+/* Material Icons Font
+as instructed on https://developers.google.com/fonts/docs/material_icons#icon_font_for_the_web */
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  color: inherit;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
 }
