@@ -52,11 +52,11 @@ function HandleClick(event) {
 function SetActiveLink(targ, isLink) {
   // Get relevant identifier from target. If isLink is true, target is a link. If false, target is a section.
   const eventTargetValue = `${
+
     isLink ? targ.parentElement.attributes.href.value : `#${targ.id}`
   }`
 
-  console.log("eventTargetValue", eventTargetValue)
-
+ 
   // Find target element
   const linkTarget = document.querySelector(eventTargetValue)
 
@@ -109,14 +109,7 @@ function buildNav(section, isHome) {
   navLinksArray.push(navItem)
 }
 
-// // Build menu button
-// var menuButton = document.createElement("a")
-// menuButton.setAttribute("href", "#")
-// menuButton.innerHTML = `<span class="material-icons menu-btn">menu</span>`
-// var pageHeader = document.querySelector(`.page__header`)
-// pageHeader.prepend(menuButton)
-
-// Build home button
+// Build menu
 var homeButton = document.createElement("a")
 homeButton.setAttribute("href", "")
 homeButton.setAttribute(
