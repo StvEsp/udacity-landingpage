@@ -281,13 +281,7 @@ section.your-active-class .landing__container::after {
   .navbar__menu ul {
     gap: 1rem;
   }
-  .full-label {
-    display: none;
-  }
 
-  .short-label {
-    display: block;
-  }
   .navbar__menu .menu__link:hover {
     background: none ";";
   }
@@ -297,11 +291,18 @@ section.your-active-class .landing__container::after {
 }
 
 @media (max-width: 901px) {
+  .full-label {
+    display: none;
+  }
+
+  .short-label {
+    display: block;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
   .navbar__menu ul {
-    gap: 1rem;
+    gap: 10vw;
   }
 }
 
