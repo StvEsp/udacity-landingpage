@@ -23,65 +23,68 @@
  *
  */
 
-const nav = document.querySelector("#navbar__list")
+const nav = document.querySelector("#navbar__list");
 
 // Create blank Array which will be populated once links are added to the DOM
-const navLinksArray = []
+const navLinksArray = [];
 
 // Create Nodelist from sections
-const sections = document.querySelectorAll("section")
+const sections = document.querySelectorAll("section");
 
 // Create Array of sections from nodelist
-const sectionsArray = Array.from(sections)
+const sectionsArray = Array.from(sections);
 /**
  * End Global Variables
  * Start Helper Functions
  *
  */
 
-const navFragment = document.createDocumentFragment()
+// Loads navbar on page load
+const navFragment = document.createDocumentFragment();
 
-// Scroll to section on link click
 // Assigns event target SetActiveLink function
 function HandleClick(event) {
-  event.preventDefault()
-  SetActiveLink(event.target, true)
+  event.preventDefault();
+  SetActiveLink(event.target, true);
 }
 
-// Reusing same function for nav link click and scroll events
+/**
+ * @description Scroll to section on link click or scroll event
+ * @param {targ} object - Event target
+ * @param {isLink} boolean - Whether the object passed is a link (clicked on) or object (scrolled to)
+ */
+//
 function SetActiveLink(targ, isLink) {
   // Get relevant identifier from target. If isLink is true, target is a link. If false, target is a section.
   const eventTargetValue = `${
-
     isLink ? targ.parentElement.attributes.href.value : `#${targ.id}`
-  }`
+  }`;
 
- 
   // Find target element
-  const linkTarget = document.querySelector(eventTargetValue)
+  const linkTarget = document.querySelector(eventTargetValue);
 
   // If link, scroll to section
   // Scroll to anchor ID using scrollIntoView event
-  isLink && linkTarget.scrollIntoView({ behavior: "smooth" })
+  isLink && linkTarget.scrollIntoView({ behavior: "smooth" });
 
   // Manage active/non-active sections
   sectionsArray.forEach((section) => {
     {
       section.id === linkTarget.id
         ? section.classList.add("your-active-class")
-        : section.classList.remove("your-active-class")
+        : section.classList.remove("your-active-class");
     }
-  })
+  });
 
   // Manage active/non-active nav li items
   navLinksArray.forEach((navLi) => {
-    const navLinkVal = navLi.firstElementChild.attributes.href.value
+    const navLinkVal = navLi.firstElementChild.attributes.href.value;
     {
       navLinkVal.replace("#", "") === linkTarget.id
         ? navLi.classList.add("your-active-class")
-        : navLi.classList.remove("your-active-class")
+        : navLi.classList.remove("your-active-class");
     }
-  })
+  });
 }
 
 /**
@@ -90,11 +93,18 @@ function SetActiveLink(targ, isLink) {
  *
  */
 
+/**
+ * @description Builds Navigation Bar
+ * @constructor
+ * @param {string} section - Object to be added to the navigation bar
+ * @param {boolean} isHome - Whether the object passed is the home button or not
+ */
+
 function buildNav(section, isHome) {
-  const theSection = section ? section : null
-  const label = theSection && theSection.dataset.nav
-  const navItem = document.createElement("li")
-  navItem.className = "menu__link"
+  const theSection = section ? section : null;
+  const label = theSection && theSection.dataset.nav;
+  const navItem = document.createElement("li");
+  navItem.className = "menu__link";
 
   isHome
     ? navItem.append(homeButton)
@@ -103,38 +113,39 @@ function buildNav(section, isHome) {
       }" onclick="HandleClick(event)">
           <div class="full-label">${label}</div>
           <div class="short-label">${label.charAt(0)}${label.slice(-1)}</div>
-        </a>`)
+        </a>`);
 
-  navFragment.appendChild(navItem)
-  navLinksArray.push(navItem)
+  navFragment.appendChild(navItem);
+  navLinksArray.push(navItem);
 }
 
-// Build menu
-var homeButton = document.createElement("a")
-homeButton.setAttribute("href", "")
+// Build home button
+const homeButton = document.createElement("a");
+homeButton.setAttribute("href", "");
 homeButton.setAttribute(
   "onclick",
   `event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });`
-)
-homeButton.innerHTML = `<span class="material-icons home-btn">home</span>`
+);
+homeButton.innerHTML = `<span class="material-icons home-btn">home</span>`;
 
-buildNav(null, true)
+// Build navbar
+buildNav(null, true);
 
 // Build nav links
-Object.values(sections).map((section) => buildNav(section, false))
+Object.values(sections).map((section) => buildNav(section, false));
 
 // Add menu to DOM
-nav.append(navFragment)
+nav.append(navFragment);
 
 // Add class 'active' to section when near top of viewport
-document.addEventListener("scroll", ScrollActions)
+document.addEventListener("scroll", ScrollActions);
 function ScrollActions() {
   sectionsArray.forEach((section) => {
-    const pos = Math.floor(section.offsetTop - window.pageYOffset)
+    const pos = Math.floor(section.offsetTop - window.pageYOffset);
     if (pos <= 110 && pos >= 0) {
-      SetActiveLink(section, false)
+      SetActiveLink(section, false);
     }
-  })
+  });
 }
 
 /**

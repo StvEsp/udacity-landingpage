@@ -62,6 +62,7 @@ main {
 section {
   position: relative;
   min-height: 80vh;
+  padding-top: 7vw;
 }
 
 /* ---- Module Rules ---- */
@@ -92,6 +93,8 @@ section {
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .navbar__menu .home-btn {
@@ -290,7 +293,7 @@ section.your-active-class .landing__container::after {
   }
 }
 
-@media (max-width: 901px) {
+@media (max-width: 600px) {
   .full-label {
     display: none;
   }
@@ -300,10 +303,13 @@ section.your-active-class .landing__container::after {
   }
 }
 
-@media (min-width: 600px) and (max-width: 900px) {
+@media (max-width: 900px) {
   .navbar__menu ul {
-    gap: 10vw;
+    gap: 5vw;
   }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
 }
 
 @media (pointer: coarse) {
